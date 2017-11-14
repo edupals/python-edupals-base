@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Raul Rodrigo Segura <raurodse@gmail.com>
 Build-Depends: debhelper (>=9),
                dh-python,
-               python-distutils,
+               python-setuptools,
                python-all
 Standards-Version: 3.9.7
 Homepage: http://lliurex.net
