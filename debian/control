@@ -1,0 +1,16 @@
+Source: python-edupals-base
+Section: python
+Priority: optional
+Maintainer: Raul Rodrigo Segura <raurodse@gmail.com>
+Build-Depends: debhelper (>=9),
+               dh-python,
+               python-distutils,
+               python-all
+Standards-Version: 3.9.7
+Homepage: http://lliurex.net
+
+Package: python-edupals-base
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: structure package to edupals python libraries
+ This package install init files for python 2 edupals libraries
