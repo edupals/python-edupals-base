@@ -1,3 +1,9 @@
+python-edupals-base (0.2) bionic; urgency=medium
+
+  * Bionic release
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Tue, 02 Oct 2018 17:07:34 +0200
+
 python-edupals-base (0.1) xenial; urgency=medium
 
   * Initial Release.
