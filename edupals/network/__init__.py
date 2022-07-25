@@ -29,27 +29,26 @@ class IFAddress:
         self.flags = flags
         if family==socket.AF_INET:
             self.address = ipaddress.IPv4Address(address)
-            #self.netmask = ipaddress.IPv4Address(netmask)
-            #self.broadcast = ipaddress.IPv4Address(broadcast)
+            if (netmask):
+                self.netmask = ipaddress.IPv4Address(netmask)
+            if (broadcast):
+                self.broadcast = ipaddress.IPv4Address(broadcast)
+
         elif family==socket.AF_INET6:
             self.address = ipaddress.IPv6Address(address)
-            #self.netmask = ipaddress.IPv6Address(netmask)
-            #self.broadcast = ipaddress.IPv6Address(broadcast)
+            if (netmask):
+                self.netmask = ipaddress.IPv6Address(netmask)
+            if (broadcast):
+                self.broadcast = ipaddress.IPv6Address(broadcast)
+
         elif family==socket.AF_PACKET:
             self.address = MacAddress(address)
-
-        self.netmask = netmask
-        self.broadcast = broadcast
-        print(self.broadcast)
 
     def __str__(self):
         if (self.family == socket.AF_INET or self.family == socket.AF_INET6):
             return "{0}/{1}/{2}".format(self.address,self.netmask,self.broadcast)
         else:
             return str(self.address)
-
-    def is_broadcast(self):
-        return (self.flags & IFF_BROADCAST)!=0
 
 class Interface:
     _address_cache = None
@@ -77,7 +76,6 @@ class Interface:
         if self.name in Interface._address_cache:
             tmp=[]
             for ifa in Interface._address_cache[self.name]:
-                print(ifa.get("broadcast"))
                 i = IFAddress(ifa["family"],ifa["flags"],ifa["address"],ifa.get("netmask"),ifa.get("broadcast"))
                 tmp.append(i)
 
@@ -85,6 +83,19 @@ class Interface:
 
         else:
             return []
+
+    def carrier(self):
+        try:
+            f=open(self.device_path+"/carrier","rt")
+            line = f.readline().strip()
+            f.close()
+
+            if(line=="1"):
+                return True
+            else:
+                return False
+        except:
+            return False
 
 def get_ip_from_host(host):
     '''
