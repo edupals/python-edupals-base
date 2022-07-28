@@ -30,3 +30,19 @@ def modules():
         ret.append(tmp[0])
 
     return ret
+
+def _is_pid_(pid):
+    for c in pid:
+        code = ord(c)
+        if (code < ord('0') or code > ord('9')):
+            return False
+
+    return True
+
+def pids():
+    tmp=[]
+    for f in os.listdir("/proc"):
+        if (_is_pid_(f)):
+            tmp.append(int(f))
+
+    return tmp
