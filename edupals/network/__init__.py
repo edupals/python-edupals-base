@@ -60,7 +60,7 @@ class Interface:
         self.name = device
         self.device_path = "/sys/class/net/"+device
 
-    def list():
+    def interfaces():
         tmp=[]
         for dev in os.listdir("/sys/class/net"):
             tmp.append(Interface(dev))
@@ -130,7 +130,11 @@ def is_ip_in_range(ip,ip_network):
     '''
     #ip_network ex: "10.0.0.128/24"
     try:
-        ip=ipaddress.IPv4Address(ip)
+        ip=ipaddress.ip_address(ip)
         return ip in list(ipaddress.ip_network(ip_network).hosts())
     except Exception:
         return False
+
+def get_network_ip(ip,netmask):
+    net = ipaddress.ip_network(ip+"/"+netmask,strict=False)
+    return net.network_address
