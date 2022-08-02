@@ -2,6 +2,7 @@ from .__libc__ import getifaddrs, IFF_BROADCAST
 import ipaddress
 import socket
 import os
+import struct
 
 SYS_TYPE_ETHERNET = 1
 SYS_TYPE_LOOPBACK = 772
@@ -138,3 +139,32 @@ def is_ip_in_range(ip,ip_network):
 def get_network_ip(ip,netmask):
     net = ipaddress.ip_network(ip+"/"+netmask,strict=False)
     return net.network_address
+
+def get_net_size(netmask):
+    '''
+    Calculates bitmask from netmask
+    ex:
+        get_net_size("255.255.255.0") -> 24
+    '''
+    netmask=netmask.split(".")
+    binary_str = ''
+    for octet in netmask:
+        binary_str += bin(int(octet))[2:].zfill(8)
+    return str(len(binary_str.rstrip('0')))
+
+#def get_net_size
+
+def get_default_gateway():
+    '''
+    Returns default gateway.
+    '''
+    with open("/proc/net/route") as fh:
+        count=0
+        for line in fh:
+            fields = line.strip().split()
+            if fields[1] != '00000000' or not int(fields[3], 16) & 2:
+                continue
+
+            return count,socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
+
+    return None
