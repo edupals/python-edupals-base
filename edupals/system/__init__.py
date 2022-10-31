@@ -1,6 +1,14 @@
 import os
 import sys
 
+class Mount:
+    def __init__(self,data):
+        self.device = data[0]
+        self.mount_point = data[1]
+        self.fs_type = data[2]
+        self.ro = data[3]
+        self.dummy = data[4]
+
 def _read_line_(path):
     f=open(path,"r")
     data=f.readline().strip()
@@ -46,3 +54,15 @@ def pids():
             tmp.append(int(f))
 
     return tmp
+
+def mounts():
+    f = open("/proc/mounts","r")
+    lines = f.readlines()
+    f.close()
+
+    ret=[]
+    for line in lines:
+        tmp = line.split()
+        ret.append(Mount(tmp))
+
+    return ret
