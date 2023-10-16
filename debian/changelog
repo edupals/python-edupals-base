@@ -1,3 +1,9 @@
+python-edupals-base (1.0.2.0) jammy; urgency=medium
+
+  * Fixed indentation issue
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Mon, 16 Oct 2023 16:15:32 +0200
+
 python-edupals-base (1.0.1.0) jammy; urgency=medium
 
   * Renamed bynary package to python3-edupals-base
