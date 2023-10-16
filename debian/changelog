@@ -1,3 +1,9 @@
+python-edupals-base (1.0.0.0) jammy; urgency=medium
+
+  * Jammy release
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Mon, 16 Oct 2023 12:16:47 +0200
+
 python-edupals-base (0.2) bionic; urgency=medium
 
   * Bionic release
