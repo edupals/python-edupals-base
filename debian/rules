@@ -15,7 +15,7 @@
 
 export PYBUILD_NAME=edupals
 %:
-	dh $@ --with python2 --buildsystem pybuild
+	dh $@ --with python3 --buildsystem pybuild
 
 
 # dh_make generated override targets
