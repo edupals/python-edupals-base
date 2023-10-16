@@ -1,3 +1,9 @@
+python-edupals-base (1.0.1.0) jammy; urgency=medium
+
+  * Renamed bynary package to python3-edupals-base
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Mon, 16 Oct 2023 14:02:14 +0200
+
 python-edupals-base (1.0.0.0) jammy; urgency=medium
 
   * Jammy release

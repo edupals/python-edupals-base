@@ -1,4 +1,4 @@
-Source: python-edupals-base
+Source: python3-edupals-base
 Section: python
 Priority: optional
 Maintainer: Raul Rodrigo Segura <raurodse@gmail.com>
@@ -6,7 +6,7 @@ Build-Depends: debhelper (>=9), python3, dh-python, python3-minimal, python3-set
 Standards-Version: 3.9.7
 Homepage: https://github.com/edupals/python-edupals-base
 
-Package: python-edupals-base
+Package: python3-edupals-base
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Description: structure package to edupals python libraries
