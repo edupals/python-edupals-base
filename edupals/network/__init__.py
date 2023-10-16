@@ -63,17 +63,17 @@ class Interface:
     _address_cache = None
 
     def __init__(self,device):
-    '''
-    Creates an Interface object from a given device name, ie: Interface("eth0")
-    Not pretended to be public API
-    '''
+        '''
+        Creates an Interface object from a given device name, ie: Interface("eth0")
+        Not pretended to be public API
+        '''
         self.name = device
         self.device_path = "/sys/class/net/"+device
 
     def interfaces():
-    '''
-    Static method that returns a list of current available interfaces
-    '''
+        '''
+        Static method that returns a list of current available interfaces
+        '''
         tmp=[]
         for dev in os.listdir("/sys/class/net"):
             tmp.append(Interface(dev))
@@ -81,9 +81,9 @@ class Interface:
         return tmp
 
     def update():
-    '''
-    Static method that updates interface addresses. Usually, there is no need to call it.
-    '''
+        '''
+        Static method that updates interface addresses. Usually, there is no need to call it.
+        '''
         Interface._address_cache = getifaddrs()
 
     def _check_update():
@@ -91,9 +91,9 @@ class Interface:
             Interface.update()
 
     def addresses(self):
-    '''
-    Returns a list of addresses
-    '''
+        '''
+        Returns a list of addresses
+        '''
         Interface._check_update()
         if self.name in Interface._address_cache:
             tmp=[]
@@ -114,9 +114,9 @@ class Interface:
         return line
 
     def get_carrier(self):
-    '''
-    Gets carrier status (device connected to medium)
-    '''
+        '''
+        Gets carrier status (device connected to medium)
+        '''
         try:
             line = self._read_sys("carrier")
             if(line=="1"):
@@ -127,17 +127,17 @@ class Interface:
             return False
 
     def get_type(self):
-    '''
-    Gets interface type, usually SYS_TYPE_ETHERNET or SYS_TYPE_LOOPBACK
-    see if_arp.h for more values
-    '''
+        '''
+        Gets interface type, usually SYS_TYPE_ETHERNET or SYS_TYPE_LOOPBACK
+        see if_arp.h for more values
+        '''
         line = self._read_sys("type")
         return int(line)
 
     def get_mtu(self):
-    '''
-    Gets interface MTU
-    '''
+        '''
+        Gets interface MTU
+        '''
         line = self._read_sys("mtu")
         return int(line)
 
