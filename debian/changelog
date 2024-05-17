@@ -1,3 +1,9 @@
+python-edupals-base (1.0.2.1) noble; urgency=medium
+
+  * Noble release with some package settings updated
+
+ -- Enrique Medina Gremaldos <quique@necos.es>  Fri, 17 May 2024 09:20:54 +0200
+
 python-edupals-base (1.0.2.0) jammy; urgency=medium
 
   * Fixed indentation issue
