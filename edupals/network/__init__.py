@@ -141,6 +141,12 @@ class Interface:
         line = self._read_sys("mtu")
         return int(line)
 
+    def is_virtual(self):
+        return not os.path.exists(self.device_path+"/device")
+
+    def is_wireless(self):
+        return os.path.exists(self.device_path+"/wireless")
+
 def get_ip_from_host(host):
     '''
     Resolves name from host. If it fails, it returns None
@@ -199,3 +205,24 @@ def get_default_gateway():
             return count,socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
 
     return None
+
+#def get_default_gateway
+
+def get_default_interface():
+
+    tmp = None
+    min_metric = 0xffffffff
+
+    with open("/proc/net/route") as fh:
+        for line in fh:
+            fields = line.strip().split()
+
+            if (fields[1] == '00000000' and int(fields[3], 16) & 2):
+                metric = int(fields[6],16)
+                if (metric < min_metric):
+                    min_metric = metric
+                    tmp = fields[0]
+
+    return tmp
+
+#def get_default_interface
