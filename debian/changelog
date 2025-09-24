@@ -1,3 +1,10 @@
+python-edupals-base (1.1.0.0) jammy; urgency=medium
+
+  * Added checks for wireless and virtual interfaces
+  * Added a method for getting default interface to internet
+
+ -- Enrique Medina Gremaldos <quique@necos.es>  Wed, 24 Sep 2025 09:28:35 +0200
+
 python-edupals-base (1.0.2.0) jammy; urgency=medium
 
   * Fixed indentation issue
